@@ -1,333 +1,648 @@
 <!DOCTYPE html>
+
 <html lang="en" class="scroll-smooth">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Printing Service - PrintHub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <style>
-        /* Custom Styles */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Soft gray background */
-        }
+    <meta charset="UTF-8">
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* Simple button animation */
-        .btn-animated {
-            transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-        }
+    <title>Student Printing Service - PrintHub</title>
 
-        .btn-animated:active {
-            transform: scale(0.98);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    <script src="https://cdn.tailwindcss.com"></script>
 
-        /* Header shadow */
-        header {
-             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-        /* Mobile menu toggle */
-        #mobile-menu {
-            display: none; /* Hidden by default */
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        #mobile-menu.active {
-            display: block; /* Shown when active */
-            max-height: 500px; /* Adjust as needed */
-            transition: max-height 0.5s ease-in;
-        }
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        /* Form input styling */
-        .form-input, .form-textarea, .form-select, .form-radio, .form-file {
-            @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200;
-        }
-        .form-label {
-            @apply block text-sm font-medium text-gray-700 mb-1;
-        }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        /* Style file input button */
-        .form-file::file-selector-button {
-             @apply mr-4 py-2 px-4 rounded-md border border-gray-300 text-sm font-semibold bg-white text-gray-700 hover:bg-gray-50 cursor-pointer transition duration-200;
-        }
-         .form-file:hover::file-selector-button {
-            @apply bg-gray-100;
-         }
-
-        /* Simple page load animation */
-        body.preload {
-            opacity: 0;
-        }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    </style>
+
+    <style>
+
+        /* Custom Styles */
+
+        body {
+
+            font-family: 'Inter', sans-serif;
+
+            background-color: #f8fafc; /* Soft gray background */
+
+        }
+
+
+
+        /* Smooth scrolling */
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+
+
+        /* Simple button animation */
+
+        .btn-animated {
+
+            transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+
+        }
+
+
+
+        .btn-animated:active {
+
+            transform: scale(0.98);
+
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+
+        /* Header shadow */
+
+        header {
+
+             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+        }
+
+
+
+        /* Mobile menu toggle */
+
+        #mobile-menu {
+
+            display: none; /* Hidden by default */
+
+            max-height: 0;
+
+            overflow: hidden;
+
+            transition: max-height 0.3s ease-out;
+
+        }
+
+        #mobile-menu.active {
+
+            display: block; /* Shown when active */
+
+            max-height: 500px; /* Adjust as needed */
+
+            transition: max-height 0.5s ease-in;
+
+        }
+
+
+
+        /* Form input styling */
+
+        .form-input, .form-textarea, .form-select, .form-radio { /* Removed .form-file */
+
+            @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200;
+
+        }
+
+        .form-label {
+
+            @apply block text-sm font-medium text-gray-700 mb-1;
+
+        }
+
+
+
+        /* Simple page load animation */
+
+        body.preload {
+
+            opacity: 0;
+
+        }
+
+
+
+    </style>
+
 </head>
+
 <body class="text-gray-800 preload"> <header class="bg-white sticky top-0 z-50 w-full">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#home" class="text-xl font-bold text-blue-600">PrintHub</a>
-            <div class="hidden md:flex space-x-6">
-                <a href="#home" class="text-gray-600 hover:text-blue-600 transition duration-200">Home</a>
-                <a href="#services" class="text-gray-600 hover:text-blue-600 transition duration-200">Services</a>
-                <a href="#order" class="text-gray-600 hover:text-blue-600 transition duration-200">Order Now</a>
-                <a href="#contact" class="text-gray-600 hover:text-blue-600 transition duration-200">Contact</a>
-            </div>
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-            </div>
-        </nav>
-        <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-200">
-            <a href="#home" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition duration-200">Home</a>
-            <a href="#services" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition duration-200">Services</a>
-            <a href="#order" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition duration-200">Order Now</a>
-            <a href="#contact" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition duration-200">Contact</a>
-        </div>
-    </header>
 
-    <main>
-        <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-20 px-6">
-            <div class="text-center max-w-3xl">
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 leading-tight">Welcome to Student PrintHub</h1>
-                <p class="text-lg text-gray-600 mb-8">Your one-stop solution for affordable and quick printing services right here in Paralakhemundi. We offer printing, booklets, and more!</p> <a href="#services" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg shadow-md transition duration-300 btn-animated inline-block">Explore Services</a>
-            </div>
-        </section>
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
 
-        <section id="services" class="py-20 px-6 bg-white">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Our Services & Pricing</h2>
-                <div class="overflow-x-auto shadow-lg rounded-lg">
-                    <table class="w-full text-left text-gray-600">
-                        <thead class="bg-gray-100 text-gray-700 uppercase text-sm">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 rounded-tl-lg">Service</th>
-                                <th scope="col" class="px-6 py-3">Description</th>
-                                <th scope="col" class="px-6 py-3 rounded-tr-lg text-right">Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="bg-white border-b hover:bg-gray-50">
-                                <td class="px-6 py-4 font-medium text-gray-900">🖤 Black & White (A4)</td>
-                                <td class="px-6 py-4">Standard black and white printing</td>
-                                <td class="px-6 py-4 text-right">₹2 / page</td>
-                            </tr>
-                            <tr class="bg-white border-b hover:bg-gray-50">
-                                <td class="px-6 py-4 font-medium text-gray-900">🎨 Color Print (A4)</td>
-                                <td class="px-6 py-4">High-quality color printing</td>
-                                <td class="px-6 py-4 text-right">₹5 / page</td>
-                            </tr>
-                             <tr class="bg-white border-b hover:bg-gray-50">
-                                <td class="px-6 py-4 font-medium text-gray-900">📘 Booklet – B/W, No Binding</td>
-                                <td class="px-6 py-4">Black & white booklet printing</td>
-                                <td class="px-6 py-4 text-right">₹60</td>
-                            </tr>
-                             <tr class="bg-white border-b hover:bg-gray-50">
-                                <td class="px-6 py-4 font-medium text-gray-900">📘 Booklet – B/W, Hard Cover</td>
-                                <td class="px-6 py-4">Black & white booklet with hard cover binding</td>
-                                <td class="px-6 py-4 text-right">₹90</td>
-                            </tr>
-                             <tr class="bg-white border-b hover:bg-gray-50">
-                                <td class="px-6 py-4 font-medium text-gray-900">📙 Booklet – Color, No Binding</td>
-                                <td class="px-6 py-4">Color booklet printing</td>
-                                <td class="px-6 py-4 text-right">₹120</td>
-                            </tr>
-                            <tr class="bg-white hover:bg-gray-50">
-                                <td class="px-6 py-4 font-medium text-gray-900 rounded-bl-lg">📙 Booklet – Color, Hard Cover</td>
-                                <td class="px-6 py-4">Color booklet with hard cover binding</td>
-                                <td class="px-6 py-4 text-right rounded-br-lg">₹160</td>
-                            </tr>
-                            </tbody>
-                    </table>
-                </div>
-                 <div class="text-center mt-10">
-                     <a href="#order" class="bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-8 rounded-lg shadow-md transition duration-300 btn-animated inline-block">Place Your Order</a>
-                 </div>
-            </div>
-        </section>
+            <a href="#home" class="text-xl font-bold text-blue-600">PrintHub</a>
 
-        <section id="order" class="py-20 px-6 bg-gray-50">
-            <div class="container mx-auto max-w-2xl"> <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Place Your Order Online</h2>
-                <p class="text-center text-gray-600 mb-8">
-                    Fill out the form below to submit your print request. Upload your files and specify your requirements. Payment is Cash on Delivery. We'll contact you via WhatsApp once it's ready!
-                </p>
-                <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg border border-gray-200">
-                    <form
-                        action="https://formspree.io/f/xwpokeqk"  /* <-- YOUR ENDPOINT */
-                        method="POST"
-                        enctype="multipart/form-data"
-                        class="space-y-6"
-                    >
-                        <div>
-                            <label for="name" class="form-label">Full Name</label>
-                            <input type="text" id="name" name="name" class="form-input" placeholder="Enter your full name" required>
-                        </div>
+            <div class="hidden md:flex space-x-6">
 
-                        <div>
-                            <label for="class-section" class="form-label">Class & Section</label>
-                            <input type="text" id="class-section" name="class_section" class="form-input" placeholder="E.g., CSE - B, 3rd Year" required>
-                        </div>
+                <a href="#home" class="text-gray-600 hover:text-blue-600 transition duration-200">Home</a>
 
-                        <div>
-                            <label for="whatsapp" class="form-label">WhatsApp Contact Number</label>
-                            <input type="tel" id="whatsapp" name="whatsapp_number" class="form-input" placeholder="Enter your 10-digit WhatsApp number" pattern="[6-9][0-9]{9}" title="Please enter a valid 10-digit Indian mobile number" required>
-                             <p class="text-xs text-gray-500 mt-1">We'll contact you on this number.</p>
-                        </div>
+                <a href="#services" class="text-gray-600 hover:text-blue-600 transition duration-200">Services</a>
 
-                         <div>
-                            <span class="form-label">Select Service</span>
-                            <div class="mt-2 space-y-2">
-                                <div class="flex items-center">
-                                    <input id="service-bw-page" name="service_type" type="radio" value="B/W Print (per page)" class="form-radio h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500" required>
-                                    <label for="service-bw-page" class="ml-3 block text-sm font-medium text-gray-700">🖤 Black & White Print (₹2/page)</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input id="service-color-page" name="service_type" type="radio" value="Color Print (per page)" class="form-radio h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
-                                    <label for="service-color-page" class="ml-3 block text-sm font-medium text-gray-700">🎨 Color Print (₹5/page)</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input id="service-booklet-bw-nobind" name="service_type" type="radio" value="Booklet - B/W, No Binding" class="form-radio h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
-                                    <label for="service-booklet-bw-nobind" class="ml-3 block text-sm font-medium text-gray-700">📘 Booklet – B/W, No Binding (₹60)</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input id="service-booklet-bw-hard" name="service_type" type="radio" value="Booklet - B/W, Hard Cover" class="form-radio h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
-                                    <label for="service-booklet-bw-hard" class="ml-3 block text-sm font-medium text-gray-700">📘 Booklet – B/W, Hard Cover (₹90)</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input id="service-booklet-color-nobind" name="service_type" type="radio" value="Booklet - Color, No Binding" class="form-radio h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
-                                    <label for="service-booklet-color-nobind" class="ml-3 block text-sm font-medium text-gray-700">📙 Booklet – Color, No Binding (₹120)</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input id="service-booklet-color-hard" name="service_type" type="radio" value="Booklet - Color, Hard Cover" class="form-radio h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
-                                    <label for="service-booklet-color-hard" class="ml-3 block text-sm font-medium text-gray-700">📙 Booklet – Color, Hard Cover (₹160)</label>
-                                </div>
-                            </div>
-                            </div>
+                <a href="#order" class="text-gray-600 hover:text-blue-600 transition duration-200">Order Now</a>
 
-                        <div>
-                            <label for="quantity" class="form-label">Number of Copies / Pages</label>
-                            <input type="number" id="quantity" name="quantity" class="form-input" value="1" min="1" required>
-                            <p class="text-xs text-gray-500 mt-1">For per-page services, enter total pages. For booklets, enter number of booklets.</p>
-                        </div>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600 transition duration-200">Contact</a>
 
-                        <div>
-                            <label for="file-upload" class="form-label">Upload Your Document</label>
-                            <input type="file" id="file-upload" name="file_upload" class="form-file" required accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png">
-                            <p class="text-xs text-gray-500 mt-1">Accepted formats: PDF, DOC, DOCX, PPT, PPTX, JPG, PNG. Max file size depends on the form handler (e.g., Formspree free tier limit).</p>
-                        </div>
+            </div>
 
-                        <div>
-                            <label for="instructions" class="form-label">Special Instructions (Optional)</label>
-                            <textarea id="instructions" name="instructions" rows="3" class="form-textarea" placeholder="E.g., Print pages 5-10 only, single-sided, specific paper type, etc."></textarea>
-                        </div>
+            <div class="md:hidden">
 
-                        <div class="text-center text-gray-700 font-medium bg-yellow-100 border border-yellow-300 p-3 rounded-md">
-                            Payment Method: Cash on Delivery
-                         </div>
+                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
 
-                        <div class="text-center">
-                            <button type="submit" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg shadow-md transition duration-300 btn-animated">
-                                Submit Order
-                            </button>
-                        </div>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
 
-                         <input type="hidden" name="_subject" value="New PrintHub Order!">
-                         <input type="text" name="_gotcha" style="display:none">
+                </button>
 
-                    </form>
-                    <p class="text-xs text-center text-gray-500 mt-6">
-                        By submitting, you agree to pay the calculated amount upon delivery. We will confirm the final price via WhatsApp based on your selection and file.
-                    </p>
-                </div>
-            </div>
-        </section>
+            </div>
 
-        <section id="contact" class="py-20 px-6 bg-white">
-            <div class="container mx-auto max-w-lg text-center">
-                <h2 class="text-3xl font-bold text-gray-800 mb-8">Get In Touch</h2>
-                <div class="bg-blue-50 p-8 rounded-lg shadow-md inline-block border border-blue-100">
-                    <p class="text-lg text-gray-700 mb-2"><strong>Operator:</strong> Himanshu Pal</p>
-                    <p class="text-lg text-gray-700 mb-4"><strong>Location:</strong> Near Beborta Street, Paralakhemundi</p>
-                    <a href="https://wa.me/919110713158" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg shadow-md transition duration-300 btn-animated">
-                        <i class="fab fa-whatsapp mr-2 text-xl"></i> Chat on WhatsApp (9110713158)
-                    </a>
-                    </div>
-            </div>
-        </section>
-    </main>
+        </nav>
 
-    <footer class="bg-gray-800 text-gray-300 py-6 px-6 text-center">
-        <p>&copy; <span id="current-year"></span> Student PrintHub. All rights reserved.</p>
-    </footer>
+        <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-200">
 
-    <script>
-        // Set current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+            <a href="#home" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition duration-200">Home</a>
 
-        // Mobile Menu Toggle
-        const menuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navLinks = mobileMenu.querySelectorAll('a'); // Get all links in the mobile menu
-        const menuIcon = menuButton.querySelector('svg path'); // Get the SVG path for the icon
+            <a href="#services" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition duration-200">Services</a>
 
-        function setMenuIcon(isOpen) {
-            if (isOpen) {
-                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // Close icon (X)
-            } else {
-                menuIcon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7'); // Hamburger icon
-            }
-        }
+            <a href="#order" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition duration-200">Order Now</a>
 
-        menuButton.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent click from immediately closing menu via document listener
-            const isActive = mobileMenu.classList.toggle('active');
-            setMenuIcon(isActive); // Update icon based on new state
-        });
+            <a href="#contact" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition duration-200">Contact</a>
 
-        // Close mobile menu when a link is clicked
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (mobileMenu.classList.contains('active')) {
-                     mobileMenu.classList.remove('active');
-                     setMenuIcon(false); // Reset button icon to hamburger
-                }
-            });
-        });
+        </div>
 
-        // Close mobile menu if clicked outside
-        document.addEventListener('click', (event) => {
-            const isClickInsideMenu = mobileMenu.contains(event.target);
-            const isClickOnButton = menuButton.contains(event.target);
+    </header>
 
-            if (!isClickInsideMenu && !isClickOnButton && mobileMenu.classList.contains('active')) {
-                mobileMenu.classList.remove('active');
-                setMenuIcon(false); // Reset button icon to hamburger
-            }
-        });
 
-        // Simple page load animation (fade in)
-        window.addEventListener('load', () => {
-            // Remove preload class to allow transition
-            document.body.classList.remove('preload');
-             // Add slight delay to ensure styles are applied before transition starts
-             setTimeout(() => {
-                 document.body.style.transition = 'opacity 0.5s ease-in-out';
-                 document.body.style.opacity = 1;
-             }, 50); // 50ms delay
-        });
 
-    </script>
+    <main>
+
+        <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-20 px-6">
+
+            <div class="text-center max-w-3xl">
+
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 leading-tight">Welcome to Student PrintHub</h1>
+
+                <p class="text-lg text-gray-600 mb-8">Your one-stop solution for affordable and quick printing services right here in Paralakhemundi. We offer printing, booklets, and more!</p>
+
+                <a href="#services" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg shadow-md transition duration-300 btn-animated inline-block">Explore Services</a>
+
+            </div>
+
+        </section>
+
+
+
+        <section id="services" class="py-20 px-6 bg-white">
+
+            <div class="container mx-auto max-w-4xl">
+
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Our Services & Pricing</h2>
+
+                <div class="overflow-x-auto shadow-lg rounded-lg">
+
+                    <table class="w-full text-left text-gray-600">
+
+                        <thead class="bg-gray-100 text-gray-700 uppercase text-sm">
+
+                            <tr>
+
+                                <th scope="col" class="px-6 py-3 rounded-tl-lg">Service</th>
+
+                                <th scope="col" class="px-6 py-3">Description</th>
+
+                                <th scope="col" class="px-6 py-3 rounded-tr-lg text-right">Price</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr class="bg-white border-b hover:bg-gray-50">
+
+                                <td class="px-6 py-4 font-medium text-gray-900">🖤 Black & White (A4)</td>
+
+                                <td class="px-6 py-4">Standard black and white printing</td>
+
+                                <td class="px-6 py-4 text-right">₹2 / page</td>
+
+                            </tr>
+
+                            <tr class="bg-white border-b hover:bg-gray-50">
+
+                                <td class="px-6 py-4 font-medium text-gray-900">🎨 Color Print (A4)</td>
+
+                                <td class="px-6 py-4">High-quality color printing</td>
+
+                                <td class="px-6 py-4 text-right">₹5 / page</td>
+
+                            </tr>
+
+                             <tr class="bg-white border-b hover:bg-gray-50">
+
+                                <td class="px-6 py-4 font-medium text-gray-900">📘 Booklet – B/W, No Binding</td>
+
+                                <td class="px-6 py-4">Black & white booklet printing</td>
+
+                                <td class="px-6 py-4 text-right">₹60</td>
+
+                            </tr>
+
+                             <tr class="bg-white border-b hover:bg-gray-50">
+
+                                <td class="px-6 py-4 font-medium text-gray-900">📘 Booklet – B/W, Hard Cover</td>
+
+                                <td class="px-6 py-4">Black & white booklet with hard cover binding</td>
+
+                                <td class="px-6 py-4 text-right">₹90</td>
+
+                            </tr>
+
+                             <tr class="bg-white border-b hover:bg-gray-50">
+
+                                <td class="px-6 py-4 font-medium text-gray-900">📙 Booklet – Color, No Binding</td>
+
+                                <td class="px-6 py-4">Color booklet printing</td>
+
+                                <td class="px-6 py-4 text-right">₹120</td>
+
+                            </tr>
+
+                            <tr class="bg-white hover:bg-gray-50">
+
+                                <td class="px-6 py-4 font-medium text-gray-900 rounded-bl-lg">📙 Booklet – Color, Hard Cover</td>
+
+                                <td class="px-6 py-4">Color booklet with hard cover binding</td>
+
+                                <td class="px-6 py-4 text-right rounded-br-lg">₹160</td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                 <div class="text-center mt-10">
+
+                     <a href="#order" class="bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-8 rounded-lg shadow-md transition duration-300 btn-animated inline-block">Place Your Order</a>
+
+                 </div>
+
+            </div>
+
+        </section>
+
+
+
+        <section id="order" class="py-20 px-6 bg-gray-50">
+
+            <div class="container mx-auto max-w-2xl">
+
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Place Your Order (2 Steps)</h2>
+
+                <div class="text-center bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md mb-8" role="alert">
+
+                    <p class="font-bold">How to Order:</p>
+
+                    <p class="text-sm">1. Fill out the form below with your details and requirements.</p>
+
+                    <p class="text-sm">2. After submitting the form, please send your document file(s) directly to our <a href="https://wa.me/919110713158" target="_blank" rel="noopener noreferrer" class="font-medium underline hover:text-blue-800">WhatsApp Number (9110713158)</a>.</p>
+
+                    <p class="text-sm mt-2">Payment is Cash on Delivery. We'll confirm via WhatsApp once your order is ready!</p>
+
+                </div>
+
+
+
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg border border-gray-200">
+
+                    <form
+
+                        action="https://formspree.io/f/xwpokeqk"
+
+                        method="POST"
+
+                        class="space-y-6"
+
+                    >
+
+                        <div>
+
+                            <label for="name" class="form-label">Full Name</label>
+
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Enter your full name" required>
+
+                        </div>
+
+
+
+                        <div>
+
+                            <label for="class-section" class="form-label">Class & Section</label>
+
+                            <input type="text" id="class-section" name="class_section" class="form-input" placeholder="E.g., CSE - B, 3rd Year" required>
+
+                        </div>
+
+
+
+                        <div>
+
+                            <label for="whatsapp" class="form-label">WhatsApp Contact Number</label>
+
+                            <input type="tel" id="whatsapp" name="whatsapp_number" class="form-input" placeholder="Enter your 10-digit WhatsApp number" pattern="[6-9][0-9]{9}" title="Please enter a valid 10-digit Indian mobile number" required>
+
+                             <p class="text-xs text-gray-500 mt-1">We'll contact you on this number.</p>
+
+                        </div>
+
+
+
+                         <div>
+
+                            <span class="form-label">Select Service</span>
+
+                            <div class="mt-2 space-y-2">
+
+                                <div class="flex items-center">
+
+                                    <input id="service-bw-page" name="service_type" type="radio" value="B/W Print (per page)" class="form-radio h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500" required>
+
+                                    <label for="service-bw-page" class="ml-3 block text-sm font-medium text-gray-700">🖤 Black & White Print (₹2/page)</label>
+
+                                </div>
+
+                                <div class="flex items-center">
+
+                                    <input id="service-color-page" name="service_type" type="radio" value="Color Print (per page)" class="form-radio h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+
+                                    <label for="service-color-page" class="ml-3 block text-sm font-medium text-gray-700">🎨 Color Print (₹5/page)</label>
+
+                                </div>
+
+                                <div class="flex items-center">
+
+                                    <input id="service-booklet-bw-nobind" name="service_type" type="radio" value="Booklet - B/W, No Binding" class="form-radio h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+
+                                    <label for="service-booklet-bw-nobind" class="ml-3 block text-sm font-medium text-gray-700">📘 Booklet – B/W, No Binding (₹60)</label>
+
+                                </div>
+
+                                <div class="flex items-center">
+
+                                    <input id="service-booklet-bw-hard" name="service_type" type="radio" value="Booklet - B/W, Hard Cover" class="form-radio h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+
+                                    <label for="service-booklet-bw-hard" class="ml-3 block text-sm font-medium text-gray-700">📘 Booklet – B/W, Hard Cover (₹90)</label>
+
+                                </div>
+
+                                <div class="flex items-center">
+
+                                    <input id="service-booklet-color-nobind" name="service_type" type="radio" value="Booklet - Color, No Binding" class="form-radio h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+
+                                    <label for="service-booklet-color-nobind" class="ml-3 block text-sm font-medium text-gray-700">📙 Booklet – Color, No Binding (₹120)</label>
+
+                                </div>
+
+                                <div class="flex items-center">
+
+                                    <input id="service-booklet-color-hard" name="service_type" type="radio" value="Booklet - Color, Hard Cover" class="form-radio h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+
+                                    <label for="service-booklet-color-hard" class="ml-3 block text-sm font-medium text-gray-700">📙 Booklet – Color, Hard Cover (₹160)</label>
+
+                                </div>
+
+                            </div>
+
+                         </div>
+
+
+
+                        <div>
+
+                            <label for="quantity" class="form-label">Number of Copies / Pages</label>
+
+                            <input type="number" id="quantity" name="quantity" class="form-input" value="1" min="1" required>
+
+                            <p class="text-xs text-gray-500 mt-1">For per-page services, enter total pages. For booklets, enter number of booklets.</p>
+
+                        </div>
+
+
+
+                        <div>
+
+                            <label for="instructions" class="form-label">Special Instructions (Optional)</label>
+
+                            <textarea id="instructions" name="instructions" rows="3" class="form-textarea" placeholder="E.g., Print pages 5-10 only, single-sided, specific paper type, etc."></textarea>
+
+                        </div>
+
+
+
+                        <div class="text-center text-gray-700 font-medium bg-yellow-100 border border-yellow-300 p-3 rounded-md">
+
+                            Payment Method: Cash on Delivery
+
+                         </div>
+
+
+
+                        <div class="text-center">
+
+                            <button type="submit" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg shadow-md transition duration-300 btn-animated">
+
+                                Submit Details (Step 1)
+
+                            </button>
+
+                        </div>
+
+
+
+                         <input type="hidden" name="_subject" value="PrintHub Order Details Submitted">
+
+                         <input type="text" name="_gotcha" style="display:none">
+
+
+
+                    </form>
+
+                    <p class="text-sm text-center text-red-600 mt-6 font-semibold">
+
+                        After clicking submit, please remember to send your document file(s) via WhatsApp to 9110713158.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <section id="contact" class="py-20 px-6 bg-white">
+
+            <div class="container mx-auto max-w-lg text-center">
+
+                <h2 class="text-3xl font-bold text-gray-800 mb-8">Get In Touch</h2>
+
+                <div class="bg-blue-50 p-8 rounded-lg shadow-md inline-block border border-blue-100">
+
+                    <p class="text-lg text-gray-700 mb-2"><strong>Operator:</strong> Himanshu Pal</p>
+
+                    <p class="text-lg text-gray-700 mb-4"><strong>Location:</strong> Near Beborta Street, Paralakhemundi</p>
+
+                    <a href="https://wa.me/919110713158" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg shadow-md transition duration-300 btn-animated">
+
+                        <i class="fab fa-whatsapp mr-2 text-xl"></i> Chat on WhatsApp (9110713158)
+
+                    </a>
+
+                    </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <footer class="bg-gray-800 text-gray-300 py-6 px-6 text-center">
+
+        <p>&copy; <span id="current-year"></span> Student PrintHub. All rights reserved.</p>
+
+    </footer>
+
+
+
+    <script>
+
+        // Set current year in footer
+
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+
+
+        // Mobile Menu Toggle
+
+        const menuButton = document.getElementById('mobile-menu-button');
+
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        const navLinks = mobileMenu.querySelectorAll('a'); // Get all links in the mobile menu
+
+        const menuIcon = menuButton.querySelector('svg path'); // Get the SVG path for the icon
+
+
+
+        function setMenuIcon(isOpen) {
+
+            if (isOpen) {
+
+                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // Close icon (X)
+
+            } else {
+
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7'); // Hamburger icon
+
+            }
+
+        }
+
+
+
+        menuButton.addEventListener('click', (e) => {
+
+            e.stopPropagation(); // Prevent click from immediately closing menu via document listener
+
+            const isActive = mobileMenu.classList.toggle('active');
+
+            setMenuIcon(isActive); // Update icon based on new state
+
+        });
+
+
+
+        // Close mobile menu when a link is clicked
+
+        navLinks.forEach(link => {
+
+            link.addEventListener('click', () => {
+
+                if (mobileMenu.classList.contains('active')) {
+
+                     mobileMenu.classList.remove('active');
+
+                     setMenuIcon(false); // Reset button icon to hamburger
+
+                }
+
+            });
+
+        });
+
+
+
+        // Close mobile menu if clicked outside
+
+        document.addEventListener('click', (event) => {
+
+            const isClickInsideMenu = mobileMenu.contains(event.target);
+
+            const isClickOnButton = menuButton.contains(event.target);
+
+
+
+            if (!isClickInsideMenu && !isClickOnButton && mobileMenu.classList.contains('active')) {
+
+                mobileMenu.classList.remove('active');
+
+                setMenuIcon(false); // Reset button icon to hamburger
+
+            }
+
+        });
+
+
+
+        // Simple page load animation (fade in)
+
+        window.addEventListener('load', () => {
+
+            // Remove preload class to allow transition
+
+            document.body.classList.remove('preload');
+
+             // Add slight delay to ensure styles are applied before transition starts
+
+             setTimeout(() => {
+
+                 document.body.style.transition = 'opacity 0.5s ease-in-out';
+
+                 document.body.style.opacity = 1;
+
+             }, 50); // 50ms delay
+
+        });
+
+
+
+    </script>
+
+
 
 </body>
+
 </html>
+
+
+
